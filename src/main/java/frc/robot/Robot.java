@@ -51,10 +51,12 @@ public class Robot extends TimedRobot {
 
     @Override
     public void testInit() {
+        teleopInit();
     }
 
     @Override
     public void testPeriodic() {
+        //write teleop code and print everything to the console so we can make sure everything is working correctly. 
     }
 
 }
