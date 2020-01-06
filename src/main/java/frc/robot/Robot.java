@@ -9,10 +9,12 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import frc.robot.controls.Controls;
+import frc.robot.subsystems.Drive;
 
 public class Robot extends TimedRobot {
 
     private final Controls mControls = Controls.getInstance();
+    private final Drive mDrive = Drive.getInstance();
 
     @Override
     public void robotInit() {
@@ -26,10 +28,18 @@ public class Robot extends TimedRobot {
     public void autonomousPeriodic() {
     }
 
+    //Runs ONCE before teleopPeriodic
     @Override
     public void teleopInit() {
+        try {
+            //Make LED Purple
+            //Clear motion profile (arraylist)
+        } catch (Throwable t) {
+            throw t;
+        }
     }
 
+    //Runs every 20 ms, 50 iterations / second
     @Override
     public void teleopPeriodic() {
         try {
@@ -41,22 +51,20 @@ public class Robot extends TimedRobot {
 
     public void userControlMode() {
 
-      double getThrottle = mControls.getThrottle();
-      double getTurn = mControls.getTurn();
-      boolean isQuickTurn = mControls.getQuickTurn();
+        double getThrottle = mControls.getThrottle();
+        double getTurn = mControls.getTurn();
+        boolean isQuickTurn = mControls.getQuickTurn();
 
-      //mDrive.drive(getThrottle, getTurn, isQuickTurn);
+        mDrive.curvatureDrive(getThrottle, getTurn, isQuickTurn);
 
     }
 
     @Override
     public void testInit() {
-        teleopInit();
     }
 
     @Override
     public void testPeriodic() {
-        //write teleop code and print everything to the console so we can make sure everything is working correctly. 
     }
 
 }
